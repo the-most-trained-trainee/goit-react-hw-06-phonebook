@@ -1,12 +1,23 @@
 import { configureStore } from "@reduxjs/toolkit";
+import storage from 'redux-persist/lib/storage';
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
 import phoneBookSliceReducer from './contact_slice.js';
 import filterSliceReducer from './filter_slice';
 
-import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
+
 
 const persistConfig = {
   key: 'root',
+  version: 1,
   storage,
 }
 
@@ -17,6 +28,14 @@ export const store = configureStore({
     contacts: persistedContactsReducer,
     filter: filterSliceReducer,
   },
+
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+
 })
 
 export const persistor = persistStore(store);

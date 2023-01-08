@@ -4,10 +4,7 @@ import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
 import { addContact } from 'redux/contact_slice';
-import { useDispatch,useSelector } from 'react-redux';
-
-// https://youtu.be/GhdqyttTedQ?t=2420
-
+import { useDispatch, useSelector } from 'react-redux';
 
 const App = () => {
   const dispatch = useDispatch();
