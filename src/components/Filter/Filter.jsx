@@ -1,8 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { setFilter } from 'redux/filter_slice';
 
-const Filter = ({ onSearch }) => {
-  const searchRequest = e => onSearch(e.currentTarget.value);
+const Filter = () => {
+  const dispatch = useDispatch();
+
+  const searchRequest = e => {
+    dispatch(setFilter(e.currentTarget.value));
+  };
 
   return (
     <div>
@@ -10,10 +14,6 @@ const Filter = ({ onSearch }) => {
       <input type="text" name="find" onChange={searchRequest} />
     </div>
   );
-};
-
-Filter.propTypes = {
-  onSearch: PropTypes.func.isRequired,
 };
 
 export default Filter;

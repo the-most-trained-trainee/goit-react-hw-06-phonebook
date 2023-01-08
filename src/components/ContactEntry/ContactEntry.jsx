@@ -1,22 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import ContactEntryStyled from './StyledContactEntry';
+import { removeContact } from 'redux/contact_slice';
+import { useDispatch } from 'react-redux';
 
-const ContactEntry = ({ name, number, id, onDelete }) => {
+const ContactEntry = ({ name, number, id }) => {
+  
+  const dispatch = useDispatch();
+
+  const onDelete = () => {
+    dispatch(removeContact(id));
+  };
+
   return (
     <ContactEntryStyled>
       <span>{name}: </span>
       <span>{number}</span>
-      <button onClick={() => onDelete(id)}>Delete</button>
+      <button onClick={onDelete}>Delete</button>
     </ContactEntryStyled>
   );
-};
-
-ContactEntry.propTypes = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  number: PropTypes.string.isRequired,
-  onDelete: PropTypes.func.isRequired,
 };
 
 export default ContactEntry;
