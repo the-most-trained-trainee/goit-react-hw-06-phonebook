@@ -13,8 +13,6 @@ import {
 import phoneBookSliceReducer from './contact_slice.js';
 import filterSliceReducer from './filter_slice';
 
-
-
 const persistConfig = {
   key: 'root',
   version: 1,

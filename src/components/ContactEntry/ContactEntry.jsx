@@ -3,7 +3,6 @@ import { removeContact } from 'redux/contact_slice';
 import { useDispatch } from 'react-redux';
 
 const ContactEntry = ({ name, number, id }) => {
-  
   const dispatch = useDispatch();
 
   const onDelete = () => {
